@@ -1,0 +1,16 @@
+version: '3'
+services:
+  flask:
+    image: health-app
+    build:
+      context: ./health
+    volumes:
+      - "./health:/app"
+  nginx:
+    image: nginx-orch
+    build:
+      context: ./nginx
+    ports:
+      - 5000:80
+    depends_on:
+      - flask
